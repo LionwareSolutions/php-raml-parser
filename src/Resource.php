@@ -38,6 +38,11 @@ class Resource
     private $baseUriParameters = [];
 
     /**
+     * @var array
+     */
+    private $uriParameters = [];
+
+    /**
      * @var string
      */
     private $description;
@@ -57,6 +62,7 @@ class Resource
         $this->displayName = $this->getArrayValue($data, 'displayName', $this->convertUriToDisplayName($uri));
         $this->description = $this->getArrayValue($data, 'description');
         $this->baseUriParameters = $this->getArrayValue($data, 'baseUriParameters', []);
+        $this->uriParameters = $this->getArrayValue($data, 'uriParameters', []);
 
         if ($data) {
             foreach ($data as $key => $value) {
@@ -67,6 +73,14 @@ class Resource
                 }
             }
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getUriParameters()
+    {
+        return $this->uriParameters;
     }
 
     /**
